@@ -1,0 +1,18 @@
+{
+  "name": "Neon Retro Arcade - Synthwave Web Game",
+  "short_name": "NeonArcade",
+  "description": "Free fast-paced retro arcade synthwave game. Catch energy orbs, dodge hazards, and beat your high scores in your browser.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#070913",
+  "theme_color": "#06b6d4",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

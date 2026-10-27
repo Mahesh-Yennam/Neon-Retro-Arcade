@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFQ8M0VSFN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RFQ8M0VSFN');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Retro Arcade | Free Synthwave Browser Game - Gamility</title>
+  <meta name="description" content="Play Neon Retro Arcade for free! Fast-paced synthwave cyber paddle arcade game. Collect glowing energy orbs, dodge hazard spikes, activate shields, and rack up combo multipliers in your browser.">
+  <meta name="keywords" content="neon arcade game, retro browser game, synthwave game, canvas arcade, free online game, gamility">
+  <meta name="author" content="Gamility">
+  <meta name="robots" content="index, follow">
+
+  <!-- Individual Game Favicon & PWA Manifest -->
+    <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Neon Retro Arcade | Free Synthwave Browser Game - Gamility">
+  <meta property="og:description" content="Play Neon Retro Arcade for free! Fast-paced synthwave cyber paddle arcade game. Collect glowing energy orbs, dodge hazard spikes, activate shields, and rack up combo multipliers in your browser.">
+  <meta property="og:image" content="preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:alt" content="Neon Retro Arcade | Free Synthwave Browser Game - Gamility">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Neon Retro Arcade | Free Synthwave Browser Game - Gamility">
+  <meta name="twitter:description" content="Play Neon Retro Arcade for free! Fast-paced synthwave cyber paddle arcade game. Collect glowing energy orbs, dodge hazard spikes, activate shields, and rack up combo multipliers in your browser.">
+  <meta name="twitter:image" content="preview.png">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#06b6d4">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Neon Retro Arcade",
+    "description": "Fast-paced synthwave cyber arcade web game. Catch glowing neon energy orbs, dodge hazards, activate shields, and set high scores.",
+    "genre": ["Arcade", "Retro", "Casual"],
+    "playMode": "SinglePlayer",
+    "applicationCategory": "Game",
+    "operatingSystem": "Any web browser",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Game Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Gamility Ribbon for Standalone & Repos Navigation -->
+  <header class="top-nav-ribbon" role="banner">
+    <a href="https://mahesh-yennam.github.io/Gamility/" class="ribbon-brand" title="Gamility Home">
+      <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20 4L4 12V28L20 36L36 28V12L20 4Z" stroke="#06b6d4" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M20 12L12 16V24L20 28L28 24V16L20 12Z" fill="#a855f7" fill-opacity="0.85"/>
+        <circle cx="20" cy="20" r="3" fill="#ffffff"/>
+      </svg>
+      <span>Gamility Arcade</span>
+    </a>
+    <a href="https://mahesh-yennam.github.io/Gamility/games.html" class="ribbon-back-btn" title="Back to All Games">
+      <span>←</span> Back to Games
+    </a>
+  </header>
+
+  <!-- Main Game Stage -->
+  <main class="game-wrapper">
+    <!-- Header with Live Score HUD -->
+    <header class="arcade-header">
+      <div class="game-title-badge">
+        <h1>Neon Retro Arcade</h1>
+      </div>
+      <div class="hud-panel" aria-label="Game HUD">
+        <div class="hud-stat">
+          <span class="hud-label">Score</span>
+          <span id="scoreVal" class="hud-val">0</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Best</span>
+          <span id="highVal" class="hud-val">0</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Combo</span>
+          <span id="comboVal" class="hud-val hud-combo">1x</span>
+        </div>
+        <div class="hud-stat">
+          <span class="hud-label">Lives</span>
+          <span id="livesVal" class="hud-val hud-lives">❤️❤️❤️</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Canvas Stage Container -->
+    <div class="canvas-container">
+      <canvas id="gameCanvas" width="800" height="600" aria-label="Neon Retro Arcade Canvas Game Stage"></canvas>
+
+      <!-- Start Game Overlay -->
+      <div id="startOverlay" class="arcade-overlay">
+        <h2 class="overlay-title start">Neon Retro Arcade</h2>
+        <p class="overlay-subtitle">Catch glowing neon energy orbs, activate shield & slow-motion powers, dodge hazard spikes, and maintain your combo chain!</p>
+        <button id="startBtn" class="arcade-btn" type="button">
+          <span>⚡</span> Start Game
+        </button>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameOverOverlay" class="arcade-overlay hidden">
+        <h2 class="overlay-title gameover">System Overload</h2>
+        <p class="overlay-subtitle">Your Energy Depleted! Final Score: <strong id="finalScore" style="color: var(--neon-cyan); font-size: 1.5rem; display: inline-block; margin-left: 0.25rem;">0</strong></p>
+        <button id="restartBtn" class="arcade-btn" type="button">
+          <span>🔄</span> Play Again
+        </button>
+      </div>
+    </div>
+
+    <!-- Controls & Actions Toolbar -->
+    <div class="controls-toolbar">
+      <div class="toolbar-btn-group">
+        <button id="pauseBtn" class="tool-icon-btn" type="button" title="Pause Game (P)">⏸️ Pause</button>
+        <button id="muteBtn" class="tool-icon-btn" type="button" title="Toggle Synthesized Audio">🔊 Sound</button>
+      </div>
+      <button id="fullscreenBtn" class="tool-icon-btn" type="button" title="Toggle Fullscreen">⛶ Fullscreen</button>
+    </div>
+
+    <!-- Mobile Touch Controls -->
+    <div class="mobile-touch-bar" aria-label="On-Screen Touch Controls">
+      <button id="touchLeft" class="touch-btn" type="button" aria-label="Move Paddle Left">◀</button>
+      <button id="touchRight" class="touch-btn" type="button" aria-label="Move Paddle Right">▶</button>
+    </div>
+
+    <!-- Instructions & Item Legend Card -->
+    <section class="game-instructions-card" aria-label="How to Play and Item Legend">
+      <h3>⚡ How to Play & Power-Ups</h3>
+      <div class="legend-grid">
+        <div class="legend-item">
+          <span class="legend-dot" style="background: #06b6d4; box-shadow: 0 0 10px #06b6d4;"></span>
+          <div><strong>Cyan Orb:</strong> +10 Pts (Chains your combo multiplier up to 5x)</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background: #a855f7; box-shadow: 0 0 10px #a855f7;"></span>
+          <div><strong>Purple Shield:</strong> Grants 1 hit barrier against hazard spikes</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
+          <div><strong>Green Slow-Mo:</strong> Slows down falling speed by 45% for 4 seconds</div>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot" style="background: #f43f5e; box-shadow: 0 0 10px #f43f5e;"></span>
+          <div><strong>Red Spike:</strong> Hazard! Costs 1 Life and resets your combo multiplier</div>
+        </div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: #94a3b8; line-height: 1.5;">
+        <strong>Desktop Controls:</strong> Use <strong>Arrow Left / Right</strong> or <strong>A / D</strong> keys, or simply hover and drag your mouse across the play area. Press <strong>P</strong> to pause.<br>
+        <strong>Mobile Controls:</strong> Tap or hold the on-screen <strong>◀ / ▶</strong> buttons or drag your finger across the canvas.
+      </p>
+    </section>
+  </main>
+
+  <!-- Core Game Script -->
+  <script src="game.js"></script>
+</body>
+</html>
